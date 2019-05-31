@@ -5,104 +5,240 @@ Created on Wed May 29 15:34:44 2019
 @author: Caroline
 """
 
-"""
-Needs to be written on a file named poker_game.py
-The game can be played by running python poker_game.py NUMBER_OF_PLAYERS
-The script accepts an argument number_of_players which is a number indicating the number of players.
-For each player the script will ask the name (using input() function).
-The script will deal 5 cards to each player (you can use random.choice to select at random from a list). The different cards, sorted from lowest to highest are 2,3,4,5,6,7,8,9,10,J,Q,K,A. There are four suits, clubs, spades, hearts, diamonds. 
-The script will print out each one of the players' hand, find out which one of the players have a winning hand and will print out the name of the winner
-For the winning rules, there are two possible implementations:
-Easy version, where we just compare the hands and the hand with the highest cards wins. For example, if Player 1 has the hand 2,3,K,Q,7 and Player 2 has the hand 8,10, ACE,J,2 Player 2 would win because 1 ACE beats a K. If Player 1 has the hand 2,3,K,Q,7, and Player 2 has the hand J,J,K,7,3 then Player 1 would win (since K,Q beats K,J).
-Hard version, where we implement the different poker hands taking the suits into account (flush, poker, straight, etc).
 
-hint: You can use the __gt__ , __lt__ or __eq__ methods on a class to implement comparisons (greater than, less than).
-Finally, we will create a repository on github called poker_game, upload the poker_game.py file and a README.md file explaining what the game does. Then we will link the repository on the blog post.
-"""
 #%%
+
+""" Import modules """
+
 import sys
 import random
-#from random import shuffle
 
 #%%
+""" Ask for player names  """
+
 #here we use int() to convert the string input into an integer
 NUMBER_OF_PLAYERS = int(sys.argv[1])
-#print(NUMBER_OF_PLAYERS) 
 
 # Start with a list containing no names.
 names = []
 
 # Ask the user for a name.
 for i in range(NUMBER_OF_PLAYERS):
-    new_name = input("Please enter the player name ")
+    new_name = input("Please enter the player name: ")
     # Add the new name to our list.
     names.append(new_name)
 
-# Show that the name has been added to the list.
-print(names)
         
 #%%
+""" Create lists and dictionary for ranks, suits, and values """
 
-def Ranks(): return ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" ]
-def Suits(): return [ "Clubs", "Diamonds", "Hearts", "Spades" ]
-def Values(): return [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+#list of rank, suit, values of each card
+Rank = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" ]
+Suits =[ "Clubs", "Diamonds", "Hearts", "Spades" ]
+Values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+
+#multiply each list by 4 to create a deck 
+rank = Rank * 4
+values = Values *4
+
+dic_VR= {k:v for k,v in zip(values, rank)}
+
+dic_RV= {k:v for k,v in zip(rank, values)}
+#%%
+#take a random sample (without replacement) of the deck 
+dealt_cards = random.sample(rank, 35) 
 
 #%%
-class Card:
-    def __init__(self, rank, suit, value):
-        self.rank = rank
-        self.suit = suit
-        self.value = value
 
-    def __str__(self):
-        return self.rank + " of " + self.suit
+hand1 = dealt_cards[0:5]
+hand2 = dealt_cards[5:10]
+hand3 = dealt_cards[10:15]
+hand4 = dealt_cards[15:20]
+hand5 = dealt_cards[20:25]
+hand6 = dealt_cards[25:30]
+hand7 = dealt_cards[30:35]
 
+"""
+hands = [hand1, hand2, hand3, hand3, hand4, hand5, hand6, hand7]
+list_length = NUMBER_OF_PLAYERS + 1
+hands = [0:list_length] 
+"""
 #%%
 
-class Deck:
-    def __init__(self, rank, suit, value, deck):
-        self.rank = rank
-        self.suit = suit
-        self.value = value
-        self.deck = []
-        self.deck = [ Card(rank, suit, value) for rank in Ranks() for suit in Suits() for value in Values() ]
-        random.shuffle(self.deck)
-    
-    def __str__(self):
-        return self.rank + " of " + self.suit
-    
-    def dealhand():
-        return random.sample(Deck.deck, 5)
-    
+while 1:
+    try:
+        if NUMBER_OF_PLAYERS <= 1:
+            print("Sorry! You need at least two player's to play poker")
+            break
+        elif NUMBER_OF_PLAYERS == 2:
+            print("{}'s hand is {}".format(names[0],hand1))
+            print("{}'s hand is {}".format(names[1],hand2))
+            break
+        elif NUMBER_OF_PLAYERS == 3:
+            print("{}'s hand is {}".format(names[0],hand1))
+            print("{}'s hand is {}".format(names[1],hand2))
+            print("{}'s hand is {}".format(names[2],hand3))
+            break
+        elif NUMBER_OF_PLAYERS == 4:
+            print("{}'s hand is {}".format(names[0],hand1))
+            print("{}'s hand is {}".format(names[1],hand2))
+            print("{}'s hand is {}".format(names[2],hand3))
+            print("{}'s hand is {}".format(names[3],hand4))
+            break
+        elif NUMBER_OF_PLAYERS == 5:
+            print("{}'s hand is {}".format(names[0],hand1))
+            print("{}'s hand is {}".format(names[1],hand2))
+            print("{}'s hand is {}".format(names[2],hand3))
+            print("{}'s hand is {}".format(names[3],hand4))
+            print("{}'s hand is {}".format(names[4],hand5))
+            break
+        elif NUMBER_OF_PLAYERS == 6:
+            print("{}'s hand is {}".format(names[0],hand1))
+            print("{}'s hand is {}".format(names[1],hand2))
+            print("{}'s hand is {}".format(names[2],hand3))
+            print("{}'s hand is {}".format(names[3],hand4))
+            print("{}'s hand is {}".format(names[4],hand5))
+            print("{}'s hand is {}".format(names[5],hand6))
+            break
+        elif NUMBER_OF_PLAYERS == 7:
+            print("{}'s hand is {}".format(names[0],hand1))
+            print("{}'s hand is {}".format(names[1],hand2))
+            print("{}'s hand is {}".format(names[2],hand3))
+            print("{}'s hand is {}".format(names[3],hand4))
+            print("{}'s hand is {}".format(names[4],hand5))
+            print("{}'s hand is {}".format(names[5],hand6))
+            print("{}'s hand is {}".format(names[6],hand7))
+            break
+        elif NUMBER_OF_PLAYERS >= 8:
+            print("Sorry, the maximum number of players is 7")
+    except ValueError:
+        print("Error: the value {} can't be converted to an integer".format(NUMBER_OF_PLAYERS))
 #%%
-" Generate a list of player hands"
+for n, i in enumerate(hand1):
+    if i == "J":
+        hand1[n] = 11
+    elif i == "Q":
+        hand1[n] = 12
+    elif i == "K":
+        hand1[n] = 13
+    elif i == "A":
+        hand1[n] = 14
+    else:
+        hand1[n] = int(i)
 
-name_deck = []
+for n, i in enumerate(hand2):
+    if i == "J":
+        hand2[n] = 11
+    elif i == "Q":
+        hand2[n] = 12
+    elif i == "K":
+        hand2[n] = 13
+    elif i == "A":
+        hand2[n] = 14
+    else:
+        hand2[n] = int(i)
 
-for i in range(NUMBER_OF_PLAYERS):
-    #Create a deck for i player
-    name_deck = Deck.dealhand()
-    #add the decks to a list 
-    name_deck.append = (name_deck)
-    #Return the deck as Rank of Suit
-    def __str__(self):
-        return name_deck
+for n, i in enumerate(hand3):
+    if i == "J":
+        hand3[n] = 11
+    elif i == "Q":
+        hand3[n] = 12
+    elif i == "K":
+        hand3[n] = 13
+    elif i == "A":
+        hand3[n] = 14
+    else:
+        hand3[n] = int(i)
+
+for n, i in enumerate(hand4):
+    if i == "J":
+        hand4[n] = 11
+    elif i == "Q":
+        hand4[n] = 12
+    elif i == "K":
+        hand4[n] = 13
+    elif i == "A":
+        hand4[n] = 14
+    else:
+        hand4[n] = int(i)
+
+for n, i in enumerate(hand5):
+    if i == "J":
+        hand5[n] = 11
+    elif i == "Q":
+        hand5[n] = 12
+    elif i == "K":
+        hand5[n] = 13
+    elif i == "A":
+        hand5[n] = 14
+    else:
+        hand5[n] = int(i)
+
+for n, i in enumerate(hand6):
+    if i == "J":
+        hand6[n] = 11
+    elif i == "Q":
+        hand6[n] = 12
+    elif i == "K":
+        hand6[n] = 13
+    elif i == "A":
+        hand6[n] = 14
+    else:
+        hand6[n] = int(i)
+
+for n, i in enumerate(hand7):
+    if i == "J":
+        hand7[n] = 11
+    elif i == "Q":
+        hand7[n] = 12
+    elif i == "K":
+        hand7[n] = 13
+    elif i == "A":
+        hand7[n] = 14
+    else:
+        hand7[n] = int(i)
 
 #%%
-"Sort and print the hands of each player"
-
-for names in NUMBER_OF_PLAYERS:
-    #sort deck in acending order by value"
-    name_deck.sort(Deck.value)
-    #print each player's hand
-    print("{}'s hand is {}".format(names, Deck.name_deck))
-
-#%%
-"Rate the poker hands"
- 
-
-#%%
-"Print the Winner's Name" 
-
-
-#list(deck1)
+while 1:
+    try:
+        if NUMBER_OF_PLAYERS <= 1:
+            print("Find a friend to play with you! Exiting game")
+            break
+        elif NUMBER_OF_PLAYERS == 2:
+            highcard = [max(hand1), max(hand2)]
+            winning_card = max(highcard)
+            winner = highcard.index(winning_card)
+            print("The winner is {}".format(names[winner]))
+            break 
+        elif NUMBER_OF_PLAYERS == 3:
+            highcard = [max(hand1), max(hand2), max(hand3)]
+            winning_card = max(highcard)
+            winner = highcard.index(winning_card)
+            print("The winner is {}".format(names[winner]))
+            break 
+        elif NUMBER_OF_PLAYERS == 4:
+            highcard = [max(hand1), max(hand2), max(hand3), max(hand4)]
+            winning_card = max(highcard)
+            winner = highcard.index(winning_card)
+            print("The winner is {}".format(names[winner]))
+            break 
+        elif NUMBER_OF_PLAYERS == 5:
+            highcard = [max(hand1), max(hand2), max(hand3), max(hand4), max(hand5)]
+            winning_card = max(highcard)
+            winner = highcard.index(winning_card)
+            print("The winner is {}".format(names[winner]))
+            break 
+        elif NUMBER_OF_PLAYERS == 6:
+            highcard = [max(hand1), max(hand2), max(hand3), max(hand4), max(hand5), max(hand6)]
+            winning_card = max(highcard)
+            winner = highcard.index(winning_card)
+            print("The winner is {}".format(names[winner]))
+            break 
+        elif NUMBER_OF_PLAYERS == 7:
+            highcard = [max(hand1), max(hand2), max(hand3), max(hand4), max(hand5), max(hand6), max(hand7)]
+            winning_card = max(highcard)
+            winner = highcard.index(winning_card)
+            print("The winner is {}".format(names[winner]))
+            break
+    except ValueError:
+        print("Error: the winner cannot be computed")
