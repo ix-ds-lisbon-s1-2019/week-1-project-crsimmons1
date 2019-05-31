@@ -34,21 +34,22 @@ for i in range(NUMBER_OF_PLAYERS):
 
 #list of rank, suit, values of each card
 Rank = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" ]
-Suits =[ "Clubs", "Diamonds", "Hearts", "Spades" ]
 Values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
 #multiply each list by 4 to create a deck 
 rank = Rank * 4
 values = Values *4
 
+#create two dictionaries : one with values as the key, the other with rank as the key 
 dic_VR= {k:v for k,v in zip(values, rank)}
-
 dic_RV= {k:v for k,v in zip(rank, values)}
 #%%
-#take a random sample (without replacement) of the deck 
+"""take a random sample (without replacement) of the deck """
+
 dealt_cards = random.sample(rank, 35) 
 
 #%%
+""" Deal hands"""
 
 hand1 = dealt_cards[0:5]
 hand2 = dealt_cards[5:10]
@@ -58,11 +59,6 @@ hand5 = dealt_cards[20:25]
 hand6 = dealt_cards[25:30]
 hand7 = dealt_cards[30:35]
 
-"""
-hands = [hand1, hand2, hand3, hand3, hand4, hand5, hand6, hand7]
-list_length = NUMBER_OF_PLAYERS + 1
-hands = [0:list_length] 
-"""
 #%%
 
 while 1:

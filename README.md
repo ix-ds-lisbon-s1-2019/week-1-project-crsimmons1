@@ -1,5 +1,9 @@
 # ix-lisbon-project-week-1
 
-Here is the repo with the project brief and where you should push your final poker game .py file. Might be a good idea to edit this README to include a link to your blog (where in a post you should link this repo too) :) 
+This is the repo with the project brief for my final poker game .py file.
 
-The deadline is **tomorrow (Friday) the 31st of May at 8pm**.
+Here is a link to my blog :
+
+https://crsimmons1.github.io/
+
+The deadline is ** (Friday) the 31st of May at 8pm**.
