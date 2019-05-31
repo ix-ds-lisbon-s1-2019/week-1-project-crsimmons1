@@ -60,6 +60,7 @@ hand6 = dealt_cards[25:30]
 hand7 = dealt_cards[30:35]
 
 #%%
+""" Print each hand"""
 
 while 1:
     try:

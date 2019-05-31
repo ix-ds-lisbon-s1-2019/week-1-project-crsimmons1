@@ -1,9 +1,7 @@
 # ix-lisbon-project-week-1
 
-This is the repo with the project brief for my final poker game .py file.
+This is the repo containing my final poker game .py file, along with the directions from iX and this README file.
 
-Here is a link to my blog :
-
+Here is a link to my blog:
 https://crsimmons1.github.io/
-
-The deadline is ** (Friday) the 31st of May at 8pm**.
+This blog has a post detailing a tutorial to make the game.
